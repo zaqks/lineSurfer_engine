@@ -1,8 +1,7 @@
 #include "../SDL/mySDL.h"
+#include <SDL2/SDL_image.h>
 
-#include "../dataStructs/arrays.h"
 
-#include "dataStructs/point.h"
 #include "vars/vars.h"
 
 #include "loops.h"
