@@ -1,11 +1,15 @@
 #include "libs/project/imports.h"
 
-int main()
-{
-    win = initWin("DOOM");
-    renderer = win->renderer;
+int main() {
+  win = initWin("lineSurfer");
+  renderer = win->renderer;
 
-    mainLoop(win, eventFunc, loopFunc);
 
-    return 0;
+  //
+  landscape = initLandscape(renderer);
+
+
+  mainLoop(win, eventFunc, loopFunc);
+
+  return 0;
 }
