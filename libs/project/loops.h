@@ -1,6 +1,6 @@
 void eventFunc(SDL_Event e) {}
 
-#define CLK 0
+#define CLK 10
 int counter = CLK / REFRESHRATE;
 
 void loopFunc(Window *win) {

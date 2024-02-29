@@ -8,14 +8,14 @@ typedef struct {
   SDL_Rect *rect2;
 
   int offset;
-  int speed;
+  float speed;
 } Landscape;
 
 Landscape *initLandscape(SDL_Renderer *renderer) {
   Landscape *rslt = (Landscape *)malloc(sizeof(Landscape));
 
   // texture
-  SDL_Surface *img = IMG_Load("assets/images/maps/map1/2.jpg");
+  SDL_Surface *img = IMG_Load("assets/images/maps/map2/1.jpg");
   rslt->texture = (SDL_Texture *)SDL_CreateTextureFromSurface(renderer, img);
   SDL_FreeSurface(img);
 
@@ -41,7 +41,7 @@ Landscape *initLandscape(SDL_Renderer *renderer) {
 
   // offset + fact
   rslt->offset = 0;
-  rslt->speed = 20;
+  rslt->speed = 5;
 
   return rslt;
 }
@@ -52,7 +52,7 @@ void drawLandscape(SDL_Renderer *renderer, Landscape *widget) {
 }
 
 void animLanscape(Landscape *widget) {
-  int speed = widget->speed;
+  float speed = widget->speed;
 
   widget->offset += speed;
   int offset = widget->offset;
