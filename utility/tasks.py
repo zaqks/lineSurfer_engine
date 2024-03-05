@@ -1,5 +1,4 @@
-from os import system, remove
-from os.path import exists
+from os import system
 import time
 
 # MAINPATH = "../"
@@ -16,8 +15,7 @@ PACKAGES = [
     "sdl2",
     "SDL2_ttf",
     "SDL2_mixer",
-    "SDL2_image",
-    # "SDL2_gfx"
+    # "SDL2_image"
 ]
 
 
@@ -31,9 +29,6 @@ def _genArgs(lst):
 
 
 def compileS():
-    if exists(f"{COMP_DIST}{MAIN_FILE_NAME}"):
-        remove(f"{COMP_DIST}{MAIN_FILE_NAME}")
-
     start = time.time()
 
     system(
