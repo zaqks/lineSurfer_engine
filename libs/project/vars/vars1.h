@@ -1,1 +1,2 @@
 Terrain *terrain;
+Player *player;

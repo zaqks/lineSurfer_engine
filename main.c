@@ -5,9 +5,9 @@ int main() {
   renderer = win->renderer;
 
 
-  //
+  //init
   terrain = initTerrain(renderer);
-
+  player = initPlayer(renderer);
 
   mainLoop(win, eventFunc, loopFunc);
 

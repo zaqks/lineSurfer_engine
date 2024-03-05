@@ -13,8 +13,9 @@ void loopFunc(Window *win) {
   }
 
   counter++;
-  // draw the landscape
+  // drawing
   drawTerrain(renderer, terrain);
+  drawPlayer(renderer, player);
   //
   SDL_RenderPresent(renderer);
 }

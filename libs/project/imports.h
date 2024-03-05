@@ -5,7 +5,7 @@
 #include "vars/vars.h"
 
 #include "widgets/statefull/Terrain.h"
-
+#include "widgets/statefull/Player.h"
 
 #include "vars/vars1.h"
 

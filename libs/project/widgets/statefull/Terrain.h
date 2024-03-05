@@ -2,10 +2,10 @@
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_surface.h>
 
-#define SPEED 3
+#define SPEED 20
 
 typedef struct {
-  int a;
+  // int a;
 
   SDL_Texture *texture;
 
@@ -14,23 +14,28 @@ typedef struct {
   SDL_Rect *rect3;
   SDL_Rect *rect4;
 
+  int ax;
+  int ay;
+
 } Terrain;
 
 Terrain *initTerrain(SDL_Renderer *renderer) {
   Terrain *widget = (Terrain *)malloc(sizeof(Terrain));
 
   // vals
-  widget->a = 45;
+  widget->ax = (RENDER_WIDTH / (float)(RENDER_HEIGHT)) * (float)SPEED;
+  widget->ay = SPEED;
 
   // texture
-  char *paths[4] = {
+  char *paths[5] = {
+      "assets/images/maps/map3/5.jpg", // texture
       "assets/images/maps/map3/4.jpg", // lines bg
       "assets/images/maps/map3/3.png", // clr bg
       "assets/images/maps/map3/2.png", // clr sections
       "assets/images/maps/map3/1.jpg"  // real bg
   };
 
-  SDL_Surface *img = IMG_Load(paths[3]);
+  SDL_Surface *img = IMG_Load(paths[0]);
 
   widget->texture = (SDL_Texture *)SDL_CreateTextureFromSurface(renderer, img);
   SDL_FreeSurface(img);
@@ -83,8 +88,8 @@ void animTerrain(Terrain *widget) {
       break;
     } else {
 
-      rects[i]->y -= SPEED;
-      rects[i]->x -= (RENDER_WIDTH / (float)(RENDER_HEIGHT)) * (float)SPEED;
+      rects[i]->y -= widget->ay;
+      rects[i]->x -= widget->ax;
 
       // rects[i]->y -= (float)(tan(M_PI * widget->a / 180)) * SPEED;
     }

@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 #define REFRESHRATE 33 // delay
-#define FULLSCREEN false
+#define FULLSCREEN true
 
 int SCREEN_WIDTH = 800;
 int SCREEN_HEIGHT = 600;
