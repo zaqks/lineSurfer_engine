@@ -3,9 +3,14 @@
 #include <SDL2/SDL_surface.h>
 
 #define SPEED 20
+#define TRACKS 10
+#define WIRES true
 
 typedef struct {
-  // int a;
+  int tracks;
+  int speed;
+  int ax;
+  int ay;
 
   SDL_Texture *texture;
 
@@ -14,20 +19,21 @@ typedef struct {
   SDL_Rect *rect3;
   SDL_Rect *rect4;
 
-  int ax;
-  int ay;
-
 } Terrain;
 
 Terrain *initTerrain(SDL_Renderer *renderer) {
   Terrain *widget = (Terrain *)malloc(sizeof(Terrain));
 
   // vals
-  widget->ax = (RENDER_WIDTH / (float)(RENDER_HEIGHT)) * (float)SPEED;
-  widget->ay = SPEED;
+  widget->tracks = TRACKS;
+  widget->speed = SPEED;
+
+  widget->ax = (RENDER_WIDTH / (float)(RENDER_HEIGHT)) * (float)widget->speed;
+  widget->ay = widget->speed;
 
   // texture
-  char *paths[5] = {
+  char *paths[6] = {
+      "assets/images/maps/map3/6.jpg", // texture dark
       "assets/images/maps/map3/5.jpg", // texture
       "assets/images/maps/map3/4.jpg", // lines bg
       "assets/images/maps/map3/3.png", // clr bg
@@ -91,7 +97,7 @@ void animTerrain(Terrain *widget) {
       rects[i]->y -= widget->ay;
       rects[i]->x -= widget->ax;
 
-      // rects[i]->y -= (float)(tan(M_PI * widget->a / 180)) * SPEED;
+      // rects[i]->y -= (float)(tan(M_PI * widget->a / 180)) * widget->speed;
     }
   }
 }
@@ -109,14 +115,35 @@ void drawTerrain(SDL_Renderer *renderer, Terrain *widget) {
   }
 
   // draw trajectories
+  if (WIRES) {
 
-  int x1, y1, x2, y2;
-  x1 = 0;
-  y1 = 0;
-  x2 = RENDER_WIDTH;
-  y2 = RENDER_HEIGHT;
+    float x1, y1, x2, y2, ax, ay;
+    ax = RENDER_WIDTH / (float)widget->tracks;
+    ay = RENDER_HEIGHT / (float)widget->tracks;
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 
-  SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-  // SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
-  drawLine(renderer, x1, y1, x2, y2);
+    // v x1++ y2--
+    x1 = 0;
+    y1 = 0;
+    x2 = RENDER_WIDTH;
+    y2 = RENDER_HEIGHT;
+
+    for (int i = 0; i < widget->tracks; i++) {
+      drawLine(renderer, x1, y1, x2, y2);
+      x1 += ax;
+      y2 -= ay;
+    }
+
+    // h x2-- y1++
+    x1 = 0;
+    y1 = 0;
+    x2 = RENDER_WIDTH;
+    y2 = RENDER_HEIGHT;
+
+    for (int i = 0; i < widget->tracks; i++) {
+      drawLine(renderer, x1, y1, x2, y2);
+      x2 -= ax;
+      y1 += ay;
+    }
+  }
 }

@@ -40,6 +40,20 @@ Player *initPlayer(SDL_Renderer *renderer) {
 void drawPlayer(SDL_Renderer *renderer, Player *widget) {
   SDL_RenderCopy(renderer, widget->texture, NULL, widget->rect);
 
-  SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-  SDL_RenderDrawRect(renderer, widget->rect);
+  if (WIRES) {
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_RenderDrawRect(renderer, widget->rect);
+  }
+}
+
+void movePlayer(Player *player, int indx) {
+  // indx -1 1
+
+  int newX = player->rect->x + indx * player->ax * RENDER_WIDTH / RENDER_HEIGHT;
+  int newY = player->rect->y - indx * player->ay * RENDER_WIDTH / RENDER_HEIGHT;
+
+  if (newY > 0 && newY < RENDER_HEIGHT - player->rect->h) {
+    player->rect->x = newX;
+    player->rect->y = newY;
+  }
 }
