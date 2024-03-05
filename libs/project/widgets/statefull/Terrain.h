@@ -107,4 +107,16 @@ void drawTerrain(SDL_Renderer *renderer, Terrain *widget) {
   for (int i = 0; i < 4; i++) {
     SDL_RenderCopy(renderer, widget->texture, NULL, rects[i]);
   }
+
+  // draw trajectories
+
+  int x1, y1, x2, y2;
+  x1 = 0;
+  y1 = 0;
+  x2 = RENDER_WIDTH;
+  y2 = RENDER_HEIGHT;
+
+  SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+  // SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
+  drawLine(renderer, x1, y1, x2, y2);
 }

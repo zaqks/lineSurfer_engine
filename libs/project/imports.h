@@ -4,6 +4,7 @@
 
 #include "vars/vars.h"
 
+#include "../SDL/widgets/Line.h"
 #include "widgets/statefull/Terrain.h"
 #include "widgets/statefull/Player.h"
 
