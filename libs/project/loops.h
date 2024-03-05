@@ -8,13 +8,13 @@ void loopFunc(Window *win) {
   SDL_RenderClear(renderer);
   //
   if (counter >= CLK / REFRESHRATE) {
-    animLanscape(landscape);
+    animTerrain(terrain);
     counter = 0;
   }
 
   counter++;
   // draw the landscape
-  drawLandscape(renderer, landscape);
+  drawTerrain(renderer, terrain);
   //
   SDL_RenderPresent(renderer);
 }

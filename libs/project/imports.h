@@ -4,7 +4,7 @@
 
 #include "vars/vars.h"
 
-#include "widgets/statefull/Lanscape.h"
+#include "widgets/statefull/Terrain.h"
 
 
 #include "vars/vars1.h"

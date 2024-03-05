@@ -3,11 +3,14 @@
 #include <SDL2/SDL_ttf.h>
 #include <stdbool.h>
 
-#define REFRESHRATE 33
+#define REFRESHRATE 33 // delay
 #define FULLSCREEN false
 
 int SCREEN_WIDTH = 800;
 int SCREEN_HEIGHT = 600;
+
+int RENDER_WIDTH = 1000;
+int RENDER_HEIGHT = 500;
 
 typedef struct {
   int width;
@@ -48,9 +51,11 @@ Window *initWin(char *title) {
     SDL_ShowCursor(0);
   }
 
-  newWin->renderer = SDL_CreateRenderer(newWin->win, -1, 0
-                                        // SDL_RENDERER_ACCELERATED
-  );
+  newWin->renderer =
+      SDL_CreateRenderer(newWin->win, -1, SDL_RENDERER_PRESENTVSYNC);
+
+  SDL_RenderSetLogicalSize(newWin->renderer, RENDER_WIDTH, RENDER_HEIGHT);
+
   SDL_SetRenderDrawColor(newWin->renderer, 0, 0, 0, 255);
   SDL_RenderClear(newWin->renderer);
 

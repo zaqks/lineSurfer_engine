@@ -6,7 +6,7 @@ int main() {
 
 
   //
-  landscape = initLandscape(renderer);
+  terrain = initTerrain(renderer);
 
 
   mainLoop(win, eventFunc, loopFunc);

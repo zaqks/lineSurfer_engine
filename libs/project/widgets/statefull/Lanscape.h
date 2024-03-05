@@ -2,6 +2,7 @@
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_surface.h>
 #include <stdio.h>
+
 typedef struct {
   SDL_Texture *texture;
   SDL_Rect *rect1;
@@ -15,7 +16,7 @@ Landscape *initLandscape(SDL_Renderer *renderer) {
   Landscape *rslt = (Landscape *)malloc(sizeof(Landscape));
 
   // texture
-  SDL_Surface *img = IMG_Load("assets/images/maps/map2/1.jpg");
+  SDL_Surface *img = IMG_Load("assets/images/maps/map3/1.jpg");
   rslt->texture = (SDL_Texture *)SDL_CreateTextureFromSurface(renderer, img);
   SDL_FreeSurface(img);
 
@@ -41,12 +42,13 @@ Landscape *initLandscape(SDL_Renderer *renderer) {
 
   // offset + fact
   rslt->offset = 0;
-  rslt->speed = 5;
+  rslt->speed = 3;
 
   return rslt;
 }
 
 void drawLandscape(SDL_Renderer *renderer, Landscape *widget) {
+
   SDL_RenderCopy(renderer, widget->texture, NULL, widget->rect1);
   SDL_RenderCopy(renderer, widget->texture, NULL, widget->rect2);
 }
@@ -64,3 +66,5 @@ void animLanscape(Landscape *widget) {
   widget->rect1->x = (offset) ? widget->rect1->x - speed : 0;
   widget->rect2->x = (offset) ? widget->rect2->x - speed : SCREEN_WIDTH;
 }
+
+//576x435

@@ -1,0 +1,105 @@
+#include <SDL2/SDL_rect.h>
+#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_surface.h>
+
+#define SPEED 3
+
+typedef struct {
+  int a;
+
+  SDL_Texture *texture;
+
+  SDL_Rect *rect1;
+  SDL_Rect *rect2;
+  SDL_Rect *rect3;
+  SDL_Rect *rect4;
+
+} Terrain;
+
+Terrain *initTerrain(SDL_Renderer *renderer) {
+  Terrain *widget = (Terrain *)malloc(sizeof(Terrain));
+
+  // vals
+  widget->a = 45;
+
+  // texture
+  char *paths[4] = {
+      "assets/images/maps/map3/4.jpg", // lines bg
+      "assets/images/maps/map3/3.png", // clr bg
+      "assets/images/maps/map3/2.png", // clr sections
+      "assets/images/maps/map3/1.jpg"  // real bg
+  };
+
+  SDL_Surface *img = IMG_Load(paths[3]);
+
+  widget->texture = (SDL_Texture *)SDL_CreateTextureFromSurface(renderer, img);
+  SDL_FreeSurface(img);
+
+  /// rects
+  widget->rect1 = (SDL_Rect *)malloc(sizeof(SDL_Rect));
+  widget->rect2 = (SDL_Rect *)malloc(sizeof(SDL_Rect));
+  widget->rect3 = (SDL_Rect *)malloc(sizeof(SDL_Rect));
+  widget->rect4 = (SDL_Rect *)malloc(sizeof(SDL_Rect));
+
+  SDL_Rect *rects[4] = {
+      widget->rect1,
+      widget->rect2,
+      widget->rect3,
+      widget->rect4,
+  };
+
+  for (int i = 0; i < 4; i++) {
+    rects[i]->w = RENDER_WIDTH;
+    rects[i]->h = RENDER_HEIGHT;
+
+    rects[i]->x = (i % 2) ? (int)(RENDER_WIDTH) : 0;
+    rects[i]->y = (i < 2) ? 0 : (int)(RENDER_HEIGHT);
+
+    // printf("%d %d\n", rects[i]->w, rects[i]->h);
+  };
+
+  return widget;
+}
+
+void animTerrain(Terrain *widget) {
+
+  SDL_Rect *rects[4] = {
+      widget->rect1,
+      widget->rect2,
+      widget->rect3,
+      widget->rect4,
+  };
+
+  for (int i = 0; i < 4; i++) {
+    if (widget->rect1->x <= -RENDER_WIDTH) {
+      for (i = 0; i < 4; i++) {
+        rects[i]->w = RENDER_WIDTH;
+        rects[i]->h = RENDER_HEIGHT;
+
+        rects[i]->x = (i % 2) ? (int)(RENDER_WIDTH) : 0;
+        rects[i]->y = (i < 2) ? 0 : (int)(RENDER_HEIGHT);
+      }
+
+      break;
+    } else {
+
+      rects[i]->y -= SPEED;
+      rects[i]->x -= (RENDER_WIDTH / (float)(RENDER_HEIGHT)) * (float)SPEED;
+
+      // rects[i]->y -= (float)(tan(M_PI * widget->a / 180)) * SPEED;
+    }
+  }
+}
+
+void drawTerrain(SDL_Renderer *renderer, Terrain *widget) {
+  SDL_Rect *rects[4] = {
+      widget->rect1,
+      widget->rect2,
+      widget->rect3,
+      widget->rect4,
+  };
+
+  for (int i = 0; i < 4; i++) {
+    SDL_RenderCopy(renderer, widget->texture, NULL, rects[i]);
+  }
+}

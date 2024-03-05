@@ -1,1 +1,1 @@
-Landscape* landscape;
+Terrain *terrain;
