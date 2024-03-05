@@ -1,8 +1,14 @@
 #include "../SDL/mySDL.h"
+#include <SDL2/SDL_image.h>
 
-#include "../dataStructs/arrays.h"
 
-#include "dataStructs/point.h"
 #include "vars/vars.h"
+
+#include "../SDL/widgets/Line.h"
+#include "widgets/statefull/Terrain.h"
+#include "widgets/statefull/Player.h"
+
+#include "vars/vars1.h"
+
 
 #include "loops.h"
