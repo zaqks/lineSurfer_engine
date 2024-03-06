@@ -11,7 +11,6 @@ int main() {
   terrain = initTerrain(renderer);
   player = initPlayer(renderer);
 
-  obs = initObstacle();
   beat = initBeat();
 
   mainLoop(win, eventFunc, loopFunc);

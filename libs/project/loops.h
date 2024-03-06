@@ -1,6 +1,3 @@
-#include <SDL2/SDL_events.h>
-#include <SDL2/SDL_keycode.h>
-
 void eventFunc(SDL_Event e) {
   if (e.type == SDL_KEYDOWN) {
     switch (e.key.keysym.sym) {
@@ -25,17 +22,20 @@ void loopFunc(Window *win) {
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
   SDL_RenderClear(renderer);
   //
-  if(!trackPlay){
+  if (!trackPlay) {
     playBg(beat);
     trackPlay = true;
   }
-  //obs manage
+  // obs manage
 
+  /*
+  rn u have a refresh each CLK
+  */
 
   //
   if (counter >= CLK / REFRESHRATE) {
     animTerrain(terrain);
-    moveObstacle(terrain, obs);
+
     counter = 0;
   }
 
@@ -43,7 +43,7 @@ void loopFunc(Window *win) {
   // drawing
   drawTerrain(renderer, terrain);
   drawPlayer(renderer, player);
-  drawObstacle(renderer, obs);
+
   //
   SDL_RenderPresent(renderer);
 }
