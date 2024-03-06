@@ -13,6 +13,10 @@ int main() {
 
   beat = initBeat();
 
+  // init clocks
+  clk1 = initClock(REFRESHRATE, REFRESHRATE);
+  clk2 = initClock(REFRESHRATE, 60000 / (float)(beat->bpm));
+
   mainLoop(win, eventFunc, loopFunc);
 
   return 0;
