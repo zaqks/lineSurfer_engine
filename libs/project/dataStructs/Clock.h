@@ -3,17 +3,27 @@ typedef struct {
   int counter;
 } Clock;
 
-Clock *initClock(float refreshRate, float clk) {
+Clock *initClock(float parentCLK, float childCLK) {
   // koulch bl ms
   Clock *rslt = (Clock *)malloc(sizeof(Clock));
-  
-  rslt->clk = clk / refreshRate;
-  rslt->counter = rslt->clk;
 
+  rslt->clk = childCLK / (float)parentCLK;
+  rslt->counter = rslt->clk;
 
   return rslt;
 }
 
+bool clockTick(Clock *clk) {
+  if (clk->counter >= clk->clk) {
+    clk->counter = 1;
+    return true;
+  }
+
+  clk->counter++;
+  return false;
+}
+
+/*
 bool clockTick(Clock *clk) {
   if (clk->counter >= clk->clk) {
     clk->counter = 0;
@@ -23,3 +33,4 @@ bool clockTick(Clock *clk) {
     return false;
   }
 }
+*/
