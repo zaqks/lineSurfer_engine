@@ -2,7 +2,7 @@
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_surface.h>
 
-#define SPEED 20
+#define SPEED 20 // 20
 #define TRACKS 10
 #define WIRES true
 
@@ -14,7 +14,7 @@ typedef struct {
 
   SDL_Texture *texture;
 
-  SDL_Rect *rect1;
+  SDL_Rect *rect1; 
   SDL_Rect *rect2;
   SDL_Rect *rect3;
   SDL_Rect *rect4;

@@ -19,13 +19,23 @@ void eventFunc(SDL_Event e) {
 
 #define CLK 10
 int counter = CLK / REFRESHRATE;
+bool trackPlay = false;
 
 void loopFunc(Window *win) {
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
   SDL_RenderClear(renderer);
   //
+  if(!trackPlay){
+    playBg(beat);
+    trackPlay = true;
+  }
+  //obs manage
+
+
+  //
   if (counter >= CLK / REFRESHRATE) {
     animTerrain(terrain);
+    moveObstacle(terrain, obs);
     counter = 0;
   }
 
@@ -33,6 +43,7 @@ void loopFunc(Window *win) {
   // drawing
   drawTerrain(renderer, terrain);
   drawPlayer(renderer, player);
+  drawObstacle(renderer, obs);
   //
   SDL_RenderPresent(renderer);
 }
