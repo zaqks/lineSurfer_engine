@@ -5,6 +5,8 @@
 
 #include "vars/vars.h"
 
+#include "../dataStructs/arrays.h"
+
 #include "../SDL/widgets/Line.h"
 #include "widgets/statefull/Terrain.h"
 #include "widgets/statefull/Obstacle.h"

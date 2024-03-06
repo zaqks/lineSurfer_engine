@@ -49,18 +49,25 @@ void loopFunc(Window *win) {
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
   SDL_RenderClear(renderer);
   //
+  if (trackPlay) {
+    if (clockTick(clk2)) {
+      if (getMoment(beat)) {
+        generateObstacle(obstacles);
+        printf("obs\n");
+      }
+    }
+  }
+
   if (!trackPlay) {
     playBg(beat);
     trackPlay = true;
   }
-  // obs manage
-  if (clockTick(clk2)) {
-  }
 
   //
-  
+
   if (clockTick(clk1)) {
     animTerrain(terrain);
+    moveObstacles(terrain, obstacles);
   }
 
   // drawing
