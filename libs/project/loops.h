@@ -1,3 +1,14 @@
+/*
+  aya doka srx HDRA ta3 rjal
+
+  rn u have a refresh each REFRESHRATE
+
+  for the anims:
+  each t (ms)
+  dok ya l boubou w3lah dir CLK<REFRSHRATE
+  jml ou ma y dirhach ya tchini
+  */
+
 void eventFunc(SDL_Event e) {
   if (e.type == SDL_KEYDOWN) {
     switch (e.key.keysym.sym) {
@@ -14,7 +25,8 @@ void eventFunc(SDL_Event e) {
   }
 }
 
-#define CLK 10
+#define CLK 66 //>REFRESHRATE
+
 int counter = CLK / REFRESHRATE;
 bool trackPlay = false;
 
@@ -27,10 +39,6 @@ void loopFunc(Window *win) {
     trackPlay = true;
   }
   // obs manage
-
-  /*
-  rn u have a refresh each CLK
-  */
 
   //
   if (counter >= CLK / REFRESHRATE) {
