@@ -11,6 +11,9 @@
 #include "widgets/statefull/Player.h"
 #include "audio/Beat.h"
 
+#include "dataStructs/Clock.h"
+
 #include "vars/vars1.h"
+
 
 #include "loops.h"
