@@ -2,6 +2,8 @@ typedef struct {
   Mix_Chunk *bg;
   int bpm;
   char *beats;
+
+  int tick;//keeps track of the current bit
 } Beat;
 
 void initSound() {
@@ -37,6 +39,10 @@ Beat *initBeat() {
   fclose(btsFile);
 
   return beat;
+}
+
+int getMoment(Beat *beat) {
+
 }
 
 void playBg(Beat *beat) {
