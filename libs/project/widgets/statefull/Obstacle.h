@@ -3,15 +3,12 @@
 #include <SDL2/SDL_surface.h>
 
 typedef struct {
-  bool anim;
-
   SDL_Texture *texture;
   SDL_Rect *rect;
 } Obstacle;
 
 Obstacle *initObstacle() {
   Obstacle *widget = (Obstacle *)malloc(sizeof(Obstacle));
-  widget->anim = true;
 
   // texture
   SDL_Surface *img = IMG_Load("assets/images/maps/map3/entities/trees/1.png");
@@ -36,17 +33,28 @@ void destroyObstacle(Obstacle *widget) {
   free(widget);
 }
 
-void moveObstacle(Terrain *terrain, Obstacle *obs) {
-  if (obs->anim) {
-    obs->rect->x -= terrain->ax;
-    obs->rect->y -= terrain->ay;
+bool moveObstacle(Terrain *terrain, Obstacle *obs) {
 
-    if (obs->rect->x + obs->rect->w < 0 || obs->rect->y + obs->rect->h < 0) {
-      obs->anim = false;
-    }
+  obs->rect->x -= terrain->ax;
+  obs->rect->y -= terrain->ay;
+
+  if (obs->rect->x + obs->rect->w < 0 || obs->rect->y + obs->rect->h < 0) {
+    return false;
   }
+  return true;
 }
 
 void drawObstacle(SDL_Renderer *renderer, Obstacle *widget) {
   SDL_RenderCopy(renderer, widget->texture, NULL, widget->rect);
+}
+
+void generateObstacle(Array *obstacles) {
+  pushArrayNode(obstacles, initObstacle());
+}
+
+void moveObstacles(Terrain *terrain, Array *obstacles) {
+  ArrayNode current;
+  for (int i = 0; i < obstacles->length; i++) {
+    current = obstacles->arr[i];
+  }
 }

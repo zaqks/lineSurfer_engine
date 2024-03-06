@@ -3,7 +3,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <stdbool.h>
 
-#define REFRESHRATE 33 // delay
+#define REFRESHRATE 33 // delay   1000/FPS
 #define FULLSCREEN false
 
 int SCREEN_WIDTH = 800;

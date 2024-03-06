@@ -1,6 +1,7 @@
 typedef struct {
   Mix_Chunk *bg;
   int bpm;
+  int measures;
   char *beats;
 
   int len;  // bits num
@@ -22,7 +23,7 @@ Beat *initBeat() {
   beat->bg = Mix_LoadWAV(bgPath);
 
   // load the beats file
-  char *btsPath = "data/levels/level1/sounds/track/beats2.txt";
+  char *btsPath = "data/levels/level1/sounds/track/beats3.txt";
   FILE *btsFile;
 
   size_t len = 0;
@@ -31,8 +32,14 @@ Beat *initBeat() {
 
   btsFile = fopen(btsPath, "r");
   for (int i = 0; (read = getline(&line, &len, btsFile)) != -1; i++) {
-    if (!i) {
-      beat->bpm = atoi(line);
+
+    if (!i || i == 1) {
+      if (!i) {
+        beat->measures = atoi(line);
+      } else {
+        beat->bpm = atoi(line);
+      }
+
     } else {
       beat->beats = line;
       break;
@@ -46,7 +53,7 @@ Beat *initBeat() {
 
   return beat;
 }
-
+/*
 int getMoment(Beat *beat) {
   if (beat->indx < beat->len) {
 
@@ -72,8 +79,21 @@ int getMoment(Beat *beat) {
 
   return 0;
 }
+*/
+
+int getMoment(Beat *beat) {
+  if (beat->indx < beat->len) {
+
+    char *current;
+    current = beat->beats + beat->indx;
+    beat->indx ++;
+
+    return *current != '0';
+  }
+  return 0;
+}
 
 void playBg(Beat *beat) {
-  Mix_PlayChannel(-1, beat->bg, 0);
+  //Mix_PlayChannel(-1, beat->bg, 0);
   // Mix_PlayMusic(sounds[soundId], 0);
 }

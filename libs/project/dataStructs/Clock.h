@@ -22,15 +22,3 @@ bool clockTick(Clock *clk) {
   clk->counter++;
   return false;
 }
-
-/*
-bool clockTick(Clock *clk) {
-  if (clk->counter >= clk->clk) {
-    clk->counter = 0;
-    return true;
-  } else {
-    clk->counter++;
-    return false;
-  }
-}
-*/
