@@ -94,6 +94,5 @@ int getMoment(Beat *beat) {
 }
 
 void playBg(Beat *beat) {
-  //Mix_PlayChannel(-1, beat->bg, 0);
-  // Mix_PlayMusic(sounds[soundId], 0);
+  Mix_PlayChannel(-1, beat->bg, 0);
 }

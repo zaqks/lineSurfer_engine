@@ -10,7 +10,10 @@ int main() {
   // init vars
   beat = initBeat();
 
-  terrain = initTerrain(renderer);
+  terrain = initTerrain(renderer, 1);
+  particles = initTerrain(renderer, 0);
+  particles->speed *= 3;
+
   player = initPlayer(renderer);
   obstacles = initArray();
 
@@ -19,6 +22,7 @@ int main() {
   clk2 =
       initClock(REFRESHRATE, 60 * 1000 / (float)(beat->bpm * beat->measures));
 
+  playBg(beat);
   mainLoop(win, eventFunc, loopFunc);
 
   return 0;

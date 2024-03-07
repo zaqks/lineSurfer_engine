@@ -3,7 +3,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <stdbool.h>
 
-#define REFRESHRATE 33 // delay   1000/FPS
+#define REFRESHRATE 10 // delay   1000/FPS
 #define FULLSCREEN false
 
 int SCREEN_WIDTH = 800;
@@ -51,7 +51,7 @@ Window *initWin(char *title) {
     SDL_ShowCursor(0);
   }
 
-  newWin->renderer = SDL_CreateRenderer(newWin->win, -1, SDL_RENDERER_SOFTWARE);
+  newWin->renderer = SDL_CreateRenderer(newWin->win, -1, SDL_RENDERER_ACCELERATED);
 
   SDL_RenderSetLogicalSize(newWin->renderer, RENDER_WIDTH, RENDER_HEIGHT);
 
