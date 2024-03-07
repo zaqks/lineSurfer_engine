@@ -43,6 +43,8 @@ void eventFunc(SDL_Event e) {
 
 int counter = REFRESHRATE / REFRESHRATE;
 
+int genCnt = 0;
+
 void loopFunc(Window *win) {
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
   SDL_RenderClear(renderer);
@@ -50,11 +52,14 @@ void loopFunc(Window *win) {
 
   if (clockTick(clk2)) {
     if (getMoment(beat)) {
-      int gen = 1;
-      for (int i = 0; i < gen; i++) {
-        generateObstacle(obstacles);
-      }
+      // genCnt += randomNum(1, 10);
+      genCnt += SPEED * 10;
     }
+  }
+
+  if (genCnt) {
+    generateObstacle(obstacles);
+    genCnt -= 1;
   }
 
   //
