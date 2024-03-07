@@ -1,7 +1,3 @@
-#include <SDL2/SDL_rect.h>
-#include <SDL2/SDL_render.h>
-#include <SDL2/SDL_surface.h>
-
 typedef struct {
   SDL_Texture *texture;
   SDL_Rect *rect;
@@ -17,8 +13,8 @@ Obstacle *initObstacle() {
 
   // lzm t3rf la v/h oumba3 u chose a random val ou cbn
   SDL_Rect *rect = (SDL_Rect *)malloc(sizeof(Obstacle));
-  rect->x = 300;
-  rect->y = 300;
+  rect->x = RENDER_WIDTH;
+  rect->y = RENDER_HEIGHT;
   rect->w = RENDER_HEIGHT / 5;
   rect->h = RENDER_HEIGHT / 5;
 
@@ -52,9 +48,30 @@ void generateObstacle(Array *obstacles) {
   pushArrayNode(obstacles, initObstacle());
 }
 
+// obstacles
 void moveObstacles(Terrain *terrain, Array *obstacles) {
   ArrayNode current;
+  Obstacle *obs;
+
   for (int i = 0; i < obstacles->length; i++) {
     current = obstacles->arr[i];
+    obs = current.val;
+
+    if (!moveObstacle(terrain, obs)) {
+      destroyObstacle(obs);
+      delArrayNode(obstacles, i);
+      i--;
+    }
+  }
+}
+
+void drawObstacles(SDL_Renderer *renderer, Array *obstacles) {
+  ArrayNode current;
+  Obstacle *obs;
+
+  for (int i = 0; i < obstacles->length; i++) {
+    current = obstacles->arr[i];
+    obs = current.val;
+    drawObstacle(renderer, obs);
   }
 }
