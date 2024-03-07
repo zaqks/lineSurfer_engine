@@ -21,14 +21,12 @@ Obstacle *initObstacle() {
   if (randomNum(0, 10) > 5) // get if v
   {
     rect->x = RENDER_WIDTH;
-    //rect->y = randomNum(1, TRACKS) * (RENDER_HEIGHT / TRACKS);
-    rect->y = randomNum(1, TRACKS) * (RENDER_HEIGHT / TRACKS);
-
+    rect->y = randomNum(rect->h, RENDER_HEIGHT);
+    // rect->y = randomNum(1, TRACKS) * (RENDER_HEIGHT / TRACKS);
   } else {
     rect->y = RENDER_HEIGHT;
-    //rect->x = randomNum(1, TRACKS) * (RENDER_WIDTH / TRACKS);
-    rect->x = randomNum(1, TRACKS) * (RENDER_WIDTH / TRACKS);
-
+    rect->w = randomNum(rect->w, RENDER_WIDTH);
+    // rect->x = randomNum(1, TRACKS) * (RENDER_WIDTH / TRACKS);
   }
 
   widget->rect = rect;
@@ -44,8 +42,8 @@ void destroyObstacle(Obstacle *widget) {
 
 bool moveObstacle(Terrain *terrain, Obstacle *obs) {
 
-  obs->rect->x -= terrain->ax;
-  obs->rect->y -= terrain->ay;
+  obs->rect->x -= terrain->ax * terrain->speed;
+  obs->rect->y -= terrain->ay * terrain->speed;
 
   if (obs->rect->x + obs->rect->w < 0 || obs->rect->y + obs->rect->h < 0) {
     return false;

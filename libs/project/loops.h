@@ -41,25 +41,20 @@ void eventFunc(SDL_Event e) {
   }
 }
 
-bool trackPlay = false;
-
 int counter = REFRESHRATE / REFRESHRATE;
 
 void loopFunc(Window *win) {
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
   SDL_RenderClear(renderer);
   //
-  if (trackPlay) {
-    if (clockTick(clk2)) {
-      if (getMoment(beat)) {
+
+  if (clockTick(clk2)) {
+    if (getMoment(beat)) {
+      int gen = randomNum(0, SPEED);
+      for (int i = 0; i < gen; i++) {
         generateObstacle(obstacles);
       }
     }
-  }
-
-  if (!trackPlay) {
-    playBg(beat);
-    trackPlay = true;
   }
 
   //
@@ -67,12 +62,14 @@ void loopFunc(Window *win) {
   if (clockTick(clk1)) {
     animTerrain(terrain);
     moveObstacles(terrain, obstacles);
+    animTerrain(particles);
   }
 
   // drawing
   drawTerrain(renderer, terrain);
   drawPlayer(renderer, player);
   drawObstacles(renderer, obstacles);
+  drawTerrain(renderer, particles);
   //
   SDL_RenderPresent(renderer);
 }
