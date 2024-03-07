@@ -12,6 +12,7 @@
 #include "widgets/statefull/Obstacle.h"
 #include "widgets/statefull/Player.h"
 #include "audio/Beat.h"
+#include "widgets/stateless/VIgnette.h"
 
 #include "dataStructs/Clock.h"
 
