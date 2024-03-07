@@ -3,7 +3,6 @@
 #include <SDL2/SDL_surface.h>
 
 #define SPEED 2 // 20
-#define WIRES false
 
 typedef struct {
   int speed;

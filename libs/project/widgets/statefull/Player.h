@@ -39,11 +39,6 @@ Player *initPlayer(SDL_Renderer *renderer) {
 
 void drawPlayer(SDL_Renderer *renderer, Player *widget) {
   SDL_RenderCopy(renderer, widget->texture, NULL, widget->rect);
-
-  if (WIRES) {
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    SDL_RenderDrawRect(renderer, widget->rect);
-  }
 }
 
 void movePlayer(Player *player, int indx) {
