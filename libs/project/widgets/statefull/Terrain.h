@@ -2,7 +2,7 @@
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_surface.h>
 
-#define SPEED 1 // 20
+#define SPEED 2 // 20
 #define WIRES false
 
 typedef struct {

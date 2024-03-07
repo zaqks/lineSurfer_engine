@@ -50,7 +50,7 @@ void loopFunc(Window *win) {
 
   if (clockTick(clk2)) {
     if (getMoment(beat)) {
-      int gen = randomNum(0, SPEED);
+      int gen = 1;
       for (int i = 0; i < gen; i++) {
         generateObstacle(obstacles);
       }
@@ -70,6 +70,7 @@ void loopFunc(Window *win) {
   drawPlayer(renderer, player);
   drawObstacles(renderer, obstacles);
   drawTerrain(renderer, particles);
+  drawVignette(renderer, vignette);
   //
   SDL_RenderPresent(renderer);
 }

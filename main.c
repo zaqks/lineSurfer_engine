@@ -12,10 +12,15 @@ int main() {
 
   terrain = initTerrain(renderer, 1);
   particles = initTerrain(renderer, 0);
-  particles->speed *= 3;
+  particles->speed *= 4;
+  
+  vignette = initVignette();
+
 
   player = initPlayer(renderer);
   obstacles = initArray();
+
+
 
   // init clocks
   clk1 = initClock(REFRESHRATE, REFRESHRATE);

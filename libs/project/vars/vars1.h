@@ -8,3 +8,6 @@ Player *player;
 Beat *beat;
 
 Array *obstacles;
+
+
+Vignette*vignette;

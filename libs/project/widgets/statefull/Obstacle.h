@@ -56,6 +56,7 @@ void drawObstacle(SDL_Renderer *renderer, Obstacle *widget) {
 }
 
 void generateObstacle(Array *obstacles) {
+
   pushArrayNode(obstacles, initObstacle());
 }
 
