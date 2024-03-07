@@ -53,7 +53,6 @@ void loopFunc(Window *win) {
     if (clockTick(clk2)) {
       if (getMoment(beat)) {
         generateObstacle(obstacles);
-        printf("obs\n");
       }
     }
   }
@@ -73,7 +72,7 @@ void loopFunc(Window *win) {
   // drawing
   drawTerrain(renderer, terrain);
   drawPlayer(renderer, player);
-
+  drawObstacles(renderer, obstacles);
   //
   SDL_RenderPresent(renderer);
 }

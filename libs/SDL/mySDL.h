@@ -51,8 +51,7 @@ Window *initWin(char *title) {
     SDL_ShowCursor(0);
   }
 
-  newWin->renderer =
-      SDL_CreateRenderer(newWin->win, -1, SDL_RENDERER_PRESENTVSYNC);
+  newWin->renderer = SDL_CreateRenderer(newWin->win, -1, SDL_RENDERER_SOFTWARE);
 
   SDL_RenderSetLogicalSize(newWin->renderer, RENDER_WIDTH, RENDER_HEIGHT);
 
