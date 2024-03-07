@@ -2,7 +2,7 @@
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_surface.h>
 
-#define SPEED 10 // 20
+#define SPEED 20 // 20
 #define TRACKS 10
 #define WIRES true
 
