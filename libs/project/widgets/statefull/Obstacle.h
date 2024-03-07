@@ -3,6 +3,8 @@ typedef struct {
   SDL_Rect *rect;
 } Obstacle;
 
+int randomNum(int min, int max) { return (rand() % (max - min)) + min; }
+
 Obstacle *initObstacle() {
   Obstacle *widget = (Obstacle *)malloc(sizeof(Obstacle));
 
@@ -11,12 +13,23 @@ Obstacle *initObstacle() {
   widget->texture = (SDL_Texture *)SDL_CreateTextureFromSurface(renderer, img);
   SDL_FreeSurface(img);
 
-  // lzm t3rf la v/h oumba3 u chose a random val ou cbn
   SDL_Rect *rect = (SDL_Rect *)malloc(sizeof(Obstacle));
-  rect->x = RENDER_WIDTH;
-  rect->y = RENDER_HEIGHT;
   rect->w = RENDER_HEIGHT / 5;
   rect->h = RENDER_HEIGHT / 5;
+
+  // lzm t3rf la v/h oumba3 u chose a random val ou cbn
+  if (randomNum(0, 10) > 5) // get if v
+  {
+    rect->x = RENDER_WIDTH;
+    //rect->y = randomNum(1, TRACKS) * (RENDER_HEIGHT / TRACKS);
+    rect->y = randomNum(1, TRACKS) * (RENDER_HEIGHT / TRACKS);
+
+  } else {
+    rect->y = RENDER_HEIGHT;
+    //rect->x = randomNum(1, TRACKS) * (RENDER_WIDTH / TRACKS);
+    rect->x = randomNum(1, TRACKS) * (RENDER_WIDTH / TRACKS);
+
+  }
 
   widget->rect = rect;
 
